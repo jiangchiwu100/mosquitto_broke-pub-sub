@@ -1,0 +1,6 @@
+eclipse.preferences.version=1
+environment/project/cdt.managedbuild.config.gnu.mingw.exe.debug.1962875701/PATH/delimiter=;
+environment/project/cdt.managedbuild.config.gnu.mingw.exe.debug.1962875701/PATH/operation=replace
+environment/project/cdt.managedbuild.config.gnu.mingw.exe.debug.1962875701/PATH/value=${CWD}\\..\\lib;${MINGW_HOME}\\bin;${MSYS_HOME}\\bin;D\:/java/bin/client;D\:/java/bin;D\:/java/lib/i386;C\:\\Program Files (x86)\\Common Files\\Oracle\\Java\\javapath;C\:\\Windows\\system32;C\:\\Windows;C\:\\Windows\\System32\\Wbem;C\:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C\:\\Windows\\System32\\OpenSSH\\;D\:\\Git\\Git\\cmd;D\:\\TortoiseGit-2.7.0.0\\bin;D\:\\TortoiseSVN\\bin;C\:\\Program Files (x86)\\STMicroelectronics\\STM32 ST-LINK Utility\\ST-LINK Utility;C\:\\Program Files (x86)\\Windows Kits\\8.1\\Windows Performance Toolkit\\;C\:\\Program Files (x86)\\CodeSourcery\\Sourcery G++ Lite\\bin;C\:\\Users\\Administrator\\AppData\\Local\\Microsoft\\WindowsApps;D\:\\VS Code\\Microsoft VS Code\\bin;C\:\\eclipse
+environment/project/cdt.managedbuild.config.gnu.mingw.exe.debug.1962875701/append=true
+environment/project/cdt.managedbuild.config.gnu.mingw.exe.debug.1962875701/appendContributed=true
