@@ -14,7 +14,7 @@ Contributors:
    Roger Light - initial implementation and documentation.
 */
 
-#include "config.h"
+#include "..\lib\config.h"
 
 #include <assert.h>
 #include <errno.h>
@@ -31,8 +31,8 @@ Contributors:
 #define snprintf sprintf_s
 #endif
 
-#include <mosquitto.h>
-#include <mqtt_protocol.h>
+#include "..\lib\mosquitto.h"
+#include "..\lib\mqtt_protocol.h"
 #include "client_shared.h"
 
 struct mosq_config cfg;

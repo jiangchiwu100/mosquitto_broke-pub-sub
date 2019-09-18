@@ -14,7 +14,7 @@ Contributors:
    Roger Light - initial implementation and documentation.
 */
 
-#include "config.h"
+#include "..\lib\config.h"
 
 #include <assert.h>
 #include <errno.h>
@@ -34,7 +34,7 @@ Contributors:
 #  include <sys/time.h>
 #endif
 
-#include <mosquitto.h>
+#include "..\lib\mosquitto.h"
 #include "client_shared.h"
 
 extern struct mosq_config cfg;
