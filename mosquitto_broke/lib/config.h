@@ -2,6 +2,7 @@
 #define CONFIG_H
 
 #define VERSION "Lei"
+//#define WITH_BROKER
 
 /* ============================================================
  * Platform options

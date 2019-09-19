@@ -25,6 +25,7 @@ Contributors:
 #include "mosquitto.h"
 #include "memory_mosq.h"
 
+
 int log__printf(struct mosquitto *mosq, int priority, const char *fmt, ...)
 {
 	va_list va;
@@ -56,4 +57,5 @@ int log__printf(struct mosquitto *mosq, int priority, const char *fmt, ...)
 
 	return MOSQ_ERR_SUCCESS;
 }
+
 

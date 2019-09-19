@@ -18,7 +18,7 @@ Contributors:
 #ifndef MOSQUITTO_BROKER_INTERNAL_H
 #define MOSQUITTO_BROKER_INTERNAL_H
 
-#include "config.h"
+#include "..\lib\config.h"
 #include <stdio.h>
 
 #ifdef WITH_WEBSOCKETS

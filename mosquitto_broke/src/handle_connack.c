@@ -14,7 +14,7 @@ Contributors:
    Roger Light - initial implementation and documentation.
 */
 
-#include "config.h"
+#include "..\lib\config.h"
 
 #include <stdio.h>
 #include <string.h>
@@ -25,6 +25,7 @@ Contributors:
 #include "packet_mosq.h"
 #include "send_mosq.h"
 #include "util_mosq.h"
+
 
 int handle__connack(struct mosquitto_db *db, struct mosquitto *context)
 {

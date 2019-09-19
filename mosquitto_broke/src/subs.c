@@ -45,7 +45,7 @@ Contributors:
  *	a/b/d
  */
 
-#include "config.h"
+#include "..\lib\config.h"
 
 #include <assert.h>
 #include <stdio.h>

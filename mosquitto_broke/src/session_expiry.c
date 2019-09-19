@@ -14,7 +14,7 @@ Contributors:
    Roger Light - initial implementation and documentation.
 */
 
-#include "config.h"
+#include "..\lib\config.h"
 
 #include <math.h>
 #include <stdio.h>
