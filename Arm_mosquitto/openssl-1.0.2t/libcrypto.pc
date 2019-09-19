@@ -1,0 +1,13 @@
+prefix=/home/lixiaolei/Arm_mosquitto/openssl-1.0.2t/__install
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+enginesdir=${libdir}/engines
+
+Name: OpenSSL-libcrypto
+Description: OpenSSL cryptography library
+Version: 1.0.2t
+Requires: 
+Libs: -L${libdir} -lcrypto
+Libs.private: -ldl
+Cflags: -I${includedir} 
