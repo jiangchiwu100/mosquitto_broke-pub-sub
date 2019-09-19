@@ -20,6 +20,10 @@ Contributors:
 #include <errno.h>
 #include <string.h>
 
+#ifndef WIN32
+#  include <strings.h>
+#endif
+
 #include "logging_mosq.h"
 #include "memory_mosq.h"
 #include "mqtt_protocol.h"
@@ -1064,7 +1068,10 @@ const mosquitto_property *mosquitto_property_read_string_pair(const mosquitto_pr
 	if(value){
 		*value = calloc(1, p->value.s.len+1);
 		if(!(*value)){
-			if(name) free(*name);
+			if(name){
+				free(*name);
+				*name = NULL;
+			}
 			return NULL;
 		}
 		memcpy(*value, p->value.s.v, p->value.s.len);

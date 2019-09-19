@@ -14,7 +14,7 @@ Contributors:
    Roger Light - initial implementation and documentation.
 */
 
-#include "..\lib\config.h"
+#include "config.h"
 
 #include <errno.h>
 #include <openssl/opensslv.h>
@@ -223,6 +223,7 @@ int delete_pwuser(FILE *fptr, FILE *ftmp, const char *username)
 	}
 	if(!found){
 		fprintf(stderr, "Warning: User %s not found in password file.\n", username);
+		return 1;
 	}
 	return 0;
 }
@@ -339,13 +340,15 @@ int gets_quiet(char *s, int len)
 #endif
 }
 
-int get_password(char *password, int len)
+int get_password(char *password, size_t len)
 {
 	char pw1[MAX_BUFFER_LEN], pw2[MAX_BUFFER_LEN];
+	size_t minLen;
+	minLen = len < MAX_BUFFER_LEN ? len : MAX_BUFFER_LEN;
 
 	printf("Password: ");
 	fflush(stdout);
-	if(gets_quiet(pw1, MAX_BUFFER_LEN)){
+	if(gets_quiet(pw1, minLen)){
 		fprintf(stderr, "Error: Empty password.\n");
 		return 1;
 	}
@@ -353,7 +356,7 @@ int get_password(char *password, int len)
 
 	printf("Reenter password: ");
 	fflush(stdout);
-	if(gets_quiet(pw2, MAX_BUFFER_LEN)){
+	if(gets_quiet(pw2, minLen)){
 		fprintf(stderr, "Error: Empty password.\n");
 		return 1;
 	}
@@ -364,7 +367,7 @@ int get_password(char *password, int len)
 		return 1;
 	}
 
-	strncpy(password, pw1, len);
+	strncpy(password, pw1, minLen);
 	return 0;
 }
 
@@ -526,7 +529,7 @@ int main(int argc, char *argv[])
 #endif
 
 	if(create_new){
-		rc = get_password(password, 1024);
+		rc = get_password(password, MAX_BUFFER_LEN);
 		if(rc){
 			free(password_file);
 			return rc;
@@ -581,7 +584,7 @@ int main(int argc, char *argv[])
 				/* Update password for individual user */
 				rc = update_pwuser(fptr, ftmp, username, password_cmd);
 			}else{
-				rc = get_password(password, 1024);
+				rc = get_password(password, MAX_BUFFER_LEN);
 				if(rc){
 					fclose(fptr);
 					fclose(ftmp);

@@ -68,6 +68,7 @@ int mosquitto__check_keepalive(struct mosquitto *mosq)
 #ifndef WITH_BROKER
 	int rc;
 #endif
+	int state;
 
 	assert(mosq);
 #if defined(WITH_BROKER) && defined(WITH_BRIDGE)
@@ -88,7 +89,11 @@ int mosquitto__check_keepalive(struct mosquitto *mosq)
 	if(mosq->keepalive && mosq->sock != INVALID_SOCKET &&
 			(now >= next_msg_out || now - last_msg_in >= mosq->keepalive)){
 
-		if(mosq->state == mosq_cs_connected && mosq->ping_t == 0){
+		pthread_mutex_lock(&mosq->state_mutex);
+		state = mosq->state;
+		pthread_mutex_unlock(&mosq->state_mutex);
+
+		if(state == mosq_cs_connected && mosq->ping_t == 0){
 			send__pingreq(mosq);
 			/* Reset last msg times to give the server time to send a pingresp */
 			pthread_mutex_lock(&mosq->msgtime_mutex);
@@ -248,7 +253,7 @@ FILE *mosquitto__fopen(const char *path, const char *mode, bool restrict_read)
 			sec.bInheritHandle = FALSE;
 			sec.lpSecurityDescriptor = &sd;
 
-			hfile = CreateFile(buf, GENERIC_READ | GENERIC_WRITE, 0,
+			hfile = CreateFile(buf, GENERIC_READ | GENERIC_WRITE, FILE_SHARE_READ,
 				&sec,
 				dwCreationDisposition,
 				FILE_ATTRIBUTE_NORMAL,

@@ -1,9 +1,5 @@
 #ifndef CONFIG_H
 #define CONFIG_H
-
-#define VERSION "Lei"
-//#define WITH_BROKER
-
 /* ============================================================
  * Platform options
  * ============================================================ */
@@ -20,7 +16,10 @@
 #  define _POSIX_C_SOURCE 200809L
 #endif
 
-#define _GNU_SOURCE
+
+#ifndef _GNU_SOURCE
+#  define _GNU_SOURCE
+#endif
 
 #define OPENSSL_LOAD_CONF
 

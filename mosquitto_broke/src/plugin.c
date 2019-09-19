@@ -75,7 +75,6 @@ int mosquitto_client_sub_count(const struct mosquitto *client)
 }
 
 
-
 const char *mosquitto_client_username(const struct mosquitto *context)
 {
 #ifdef WITH_BRIDGE

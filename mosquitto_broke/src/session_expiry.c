@@ -14,7 +14,7 @@ Contributors:
    Roger Light - initial implementation and documentation.
 */
 
-#include "..\lib\config.h"
+#include "config.h"
 
 #include <math.h>
 #include <stdio.h>
@@ -79,6 +79,7 @@ void session_expiry__remove_all(struct mosquitto_db *db)
 		session_expiry__remove(context);
 		context->session_expiry_interval = 0;
 		context->will_delay_interval = 0;
+		will_delay__remove(context);
 		context__disconnect(db, context);
 	}
 	
@@ -94,11 +95,17 @@ void session_expiry__check(struct mosquitto_db *db, time_t now)
 	last_check = now;
 
 	DL_FOREACH_SAFE(expiry_list, item, tmp){
-		if(item->context->session_expiry_time < now){
+		if(item->context->session_expiry_interval != UINT32_MAX
+				&& item->context->session_expiry_time < now){
+
 			context = item->context;
 			session_expiry__remove(context);
 
+			/* Session has now expired, so clear interval */
 			context->session_expiry_interval = 0;
+			/* Session has expired, so will delay should be cleared. */
+			context->will_delay_interval = 0;
+			will_delay__remove(context);
 			context__send_will(db, context);
 			context__add_to_disused(db, context);
 		}else{

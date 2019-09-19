@@ -14,7 +14,7 @@ Contributors:
    Roger Light - initial implementation and documentation.
 */
 
-#include "..\lib\config.h"
+#include "config.h"
 
 #ifdef WITH_PERSISTENCE
 

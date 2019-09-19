@@ -34,7 +34,7 @@ Contributors:
 #if defined(WITH_THREADING) && !defined(WITH_BROKER)
 #  include <pthread.h>
 #else
-#  include "dummypthread.h"
+#  include <dummypthread.h>
 #endif
 
 #ifdef WITH_SRV
@@ -326,6 +326,7 @@ struct mosquitto {
 	char *host;
 	int port;
 	char *bind_address;
+	unsigned int reconnects;
 	unsigned int reconnect_delay;
 	unsigned int reconnect_delay_max;
 	bool reconnect_exponential_backoff;
